@@ -1,0 +1,22 @@
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 52px; /* Vertically center the text there */
+  border-top: .5rem solid #f64d18;
+  box-shadow: -0.25rem 0 1rem 0.25rem #4e4e4e;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-top: 70px;
+  margin-bottom: 60px;
+}
+
+/* Fix for footer not working */
+html {
+    position: relative;
+    min-height: 100%;
+}

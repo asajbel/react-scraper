@@ -1,28 +1,97 @@
-.App {
-  text-align: center;
+.jumbotron {
+  background-color: #9e3312;
+  background-image: url("/assets/images/newspaper.jpg");
+  background-blend-mode: multiply;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0.25rem 0.25rem 1rem 0.25rem #4e4e4e;
+  color: #f8f9fa;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.lead, .display-3 {
+  font-weight: 600;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.tx-cl-reddit {
+  color: #f64d18;
 }
 
-.App-title {
-  font-size: 1.5em;
+.bg-cl-reddit {
+  background-color: #f64d18;
 }
 
-.App-intro {
-  font-size: large;
+.bd-cl-reddit {
+  border-color: #f64d18;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.btn-reddit {
+  background-color: #f64d18;
+  border-color: #f64d18;
+}
+
+.btn-reddit:hover {
+  background-color: #dd3a08;
+  border-color: #d43708;
+}
+
+.btn-reddit, .btn-save, .btn-details, .btn-delete {
+  box-shadow: 0.25rem 0.25rem 1rem 1px #151515;
+  margin: 2px 0;
+  color: #fff;
+}
+
+.btn-reddit:focus, .btn-save:focus, .btn-details:focus, .btn-delete:focus {
+  box-shadow: 0.25rem 0.25rem 1rem 1px #151515;
+}
+
+.btn-reddit:active, .btn-save:active, .btn-details:active, .btn-delete:active {
+  box-shadow: none;
+}
+
+.btn-save {
+  background-color: #40ce60;
+}
+
+.btn-details {
+  background-color: #d02ad0;
+}
+
+.btn-delete {
+  background-color: #f12424;
+}
+
+.buttons {
+  display: block;
+  padding: 1rem;
+  min-height: 56px;
+  text-align: right;
+  line-height: inherit;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  z-index: 200;
+}
+
+.navbar{ 
+  min-height: 100%;
+}
+
+.navbar-toggler {
+  margin-right: 2rem;
+}
+
+body {
+  background-image: url("/assets/images/paper.jpg");
+  min-width: 340px;
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
 }
