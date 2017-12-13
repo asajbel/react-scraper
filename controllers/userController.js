@@ -22,6 +22,12 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  findOrCreate: function(req, res) {
+    db.User
+      .find(req.body, {upsert: true, new: true})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   getSaved: function(req, res) {
     db.User
       .findOne({name: req.params.name})
@@ -30,19 +36,21 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   saveArticle: function(req, res) {
+    console.log("saveArticle", req.body);
     db.User
       .findOneAndUpdate({name: req.body.name}, { $push: { articles: req.params.id} }, { new: true })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   removeArticle: function(req, res) {
+    console.log("removeArticle", req.body);
     db.User
       .findOneAndUpdate({name: req.body.name}, { $pull: { articles: req.params.id} }, { new: true })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    console.log(req.body);
+    console.log("create", req.body);
     db.User
       .create(req.body)
       .then(dbModel => res.json(dbModel))
@@ -52,12 +60,14 @@ module.exports = {
       });
   },
   update: function(req, res) {
+    console.log("update", req.body);
     db.User
       .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
+    console.log("remove", req.body);
     db.User
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())

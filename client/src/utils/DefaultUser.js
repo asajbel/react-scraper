@@ -7,8 +7,8 @@ let User = {
 API.getUser(User.name)	
 	.then(res => {
 		if (res.data.length > 0) {
-			User.id = res.data._id;
-			console.log("Default user already exists");
+			User._id = res.data[0]._id;
+			console.log("Default user already exists", User);
 			return false;
 		} else {
 			return API.createUser(User);
@@ -16,8 +16,8 @@ API.getUser(User.name)
 	})
 	.then(res => {
 		if (res) {
-			console.log("Default user created");
-			User.id = res.data._id;
+			User._id = res.data._id;
+			console.log("Default user created", User);
 		}
 	})
 	.catch(err => {

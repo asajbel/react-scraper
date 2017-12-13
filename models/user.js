@@ -14,8 +14,7 @@ const UserSchema = new Schema({
 	articles: [
 		{
 			type: Schema.Types.ObjectId,
-      ref: "Article",
-      unique: true
+      ref: "Article"
 		}
 	]
 });
