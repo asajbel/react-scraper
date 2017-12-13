@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Article from "../components/Article";
 import Modal from '../components/Modal';
 import API from "../utils/API";
+import User from "../utils/DefaultUser";
 
 class Home extends Component {
 	state = {
@@ -40,7 +41,7 @@ class Home extends Component {
 	saveArticle = event => {
 		const id = event.target.dataset.id;
 		console.log(id);
-		API.saveArticle(id)
+		API.saveArticle(id, User)
 			.then(res => {
 				this.toggleModal(`Saved the article to your colection.`);
 			})

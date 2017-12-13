@@ -24,18 +24,6 @@ mongoose.connect(
   }
 );
 
-var coreUser = {
-  name: "scrapper"
-};
-
-db.User
-  .create(coreUser)
-  .then(function(dbUser) {
-    console.log(dbUser);
-  })
-  .catch(function(err) {
-    console.log(err.message);
-  });
 
 // Start the API server
 app.listen(PORT, function() {

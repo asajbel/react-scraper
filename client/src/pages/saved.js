@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Article from "../components/Article";
 import Modal from '../components/Modal';
 import API from "../utils/API";
+import User from "../utils/DefaultUser";
 
 class Saved extends Component {
 	state = {
@@ -22,19 +23,26 @@ class Saved extends Component {
 	};
 
 	loadArticles = () => {
-		API.getArticles()
+		API.getSaved(User.name)
 			.then(res => this.setState({ articles: res.data }))
 			.catch(err => console.log(err));
 	};
 
-	scrapeBooks = event => {
-		API.scrape()
+	deleteSaved = event => {
+		event.preventDefault();
+		const id = event.target.dataset.id;
+		API.removeArticle(id, User)
 			.then(res => {
-				console.log("res: ", res);
+				console.log(res.data);
 				this.loadArticles();
-				this.toggleModal(`Found ${res.data.length} new articles.`);
+				this.toggleModal("Article removed from your saved list");
 			})
 			.catch(err => console.log(err));
+	};
+
+	getDetails = event => {
+		event.preventDefault();
+		
 	};
 
 	render() {
@@ -47,7 +55,6 @@ class Saved extends Component {
 		    <div className="container">
 		      <h1 className="display-3">React Scraper</h1>
 		      <p className="lead">Reddit Edition with MongoDB</p>
-          <button id="scrapebtn" onClick={this.scrapeBooks} className="btn btn-reddit">Scrape reddit.com/r/all</button>
 		    </div>
 		  </div>
 		  <div id="articles">
@@ -55,6 +62,7 @@ class Saved extends Component {
           <Article
           	key = {article.titleLink + i}
           	saved = {true}
+          	deleteHandler = {this.deleteSaved}
           	{...article}
           />
         ))}
