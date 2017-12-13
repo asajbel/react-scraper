@@ -1,26 +1,4 @@
-.btn-reddit {
-  background-color: #f64d18;
-  border-color: #f64d18;
-}
 
-.btn-reddit:hover {
-  background-color: #dd3a08;
-  border-color: #d43708;
-}
-
-.btn-reddit{
-  box-shadow: 0.25rem 0.25rem 1rem 1px #151515;
-  margin: 2px 0;
-  color: #fff;
-}
-
-.btn-reddit:focus {
-  box-shadow: 0.25rem 0.25rem 1rem 1px #151515;
-}
-
-.btn-reddit:active {
-  box-shadow: none;
-}
 
 header {
   position: fixed;

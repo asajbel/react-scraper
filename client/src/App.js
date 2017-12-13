@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Home from './components/pages/home.js';
+import Home from './pages/home.js';
 import Footer from './components/Footer';
 import Header from './components/Header';
 

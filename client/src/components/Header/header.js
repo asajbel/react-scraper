@@ -16,11 +16,6 @@ const Header = props => (
         <li className={`nav-item ${ props.saved && " active" }`}>
           <a className="nav-link" href="/saved">Saved Articles { props.saved && <span className="sr-only">(current)</span> }</a>
         </li>
-        { props.home &&
-          <li className="nav-item">
-            <button id="scrapebtn" className="btn btn-reddit">Scrap reddit.com/r/all</button>
-          </li>
-        }
       </ul>
     </div>
   </nav>

@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const routes = require("./routes");
+const db = require("./models");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -17,11 +18,24 @@ app.use(routes);
 mongoose.Promise = global.Promise;
 // Connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist",
+  process.env.MONGODB_URI || "mongodb://localhost/scraper",
   {
     useMongoClient: true
   }
 );
+
+var coreUser = {
+  name: "scrapper"
+};
+
+db.User
+  .create(coreUser)
+  .then(function(dbUser) {
+    console.log(dbUser);
+  })
+  .catch(function(err) {
+    console.log(err.message);
+  });
 
 // Start the API server
 app.listen(PORT, function() {

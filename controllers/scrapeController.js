@@ -1,24 +1,23 @@
-var request = require("request");
-var db = require("../models");
-var cheerio = require("cheerio");
+const db = require("../models");
+const cheerio = require("cheerio");
+const request = require("request");
 
-module.exports = function(app) {
-	app.get("/scrape/:subreddit?", function(req, res) {
-		var subreddit = req.params.subreddit;
+module.exports = {
+	scrape: function(req, res) {
+		let subreddit = req.params.subreddit;
 		if(!req.params.subreddit) {
 			subreddit = "all"
 		}
 	  // Make a request for the news section of ycombinator
 	  request("https://www.reddit.com/r/"+subreddit, function(error, response, html) {
 	    // Load the html body from request into cheerio
-	    var $ = cheerio.load(html);
+	    const $ = cheerio.load(html);
 	    // For each element with a "title" class
-	    var page = [];
-	    var articles = [];
-	    var count = $('div#siteTable > div.link').length;
-	    var site = $('div#siteTable > div.link');
+	    let page = [];
+	    let articles = [];
+	    let count = $('div#siteTable > div.link').length;
 	    $('div#siteTable > div.link').each(function( index ) {
-	    	var article = {};
+	    	let article = {};
 		    article.title = $(this).find('p.title > a.title').text().trim();
 		    article.titleLink = $(this).find('p.title > a.title').attr("href").trim();
 		    if(article.titleLink[0] === "/") {
@@ -45,7 +44,7 @@ module.exports = function(app) {
 		    		if(!dbArticle){
 		    			count++;
 		    			db.Article.create(article)
-		    				.then(function(newArticle) {
+		    				.then(newArticle => {
 		    					count--;
 		    					articles.push(newArticle);
 		    					if(count == 0) {
@@ -67,5 +66,5 @@ module.exports = function(app) {
 		    	});
 		  });
 	  });
-	});
+	}
 }
