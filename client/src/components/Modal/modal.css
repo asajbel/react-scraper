@@ -1,0 +1,73 @@
+.mdl-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.3);
+  padding: 50px;
+  z-index: 1000;
+}
+
+.mdl-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 15px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.mdl {
+  background-color: #fff;
+  border-radius: 5px;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 8px;
+  z-index: 1050;
+}
+
+.mdl-body {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 15px;
+}
+
+.cls {
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: 0.5;
+}
+
+.mdl-header .cls {
+  padding: 15px;
+  margin: -15px -15px -15px auto;
+}
+
+button.cls {
+  padding: 0;
+  background: 0 0;
+  border: 0;
+}
+
+.mdl-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 15px;
+  border-top: 1px solid #e9ecef;
+}
+
+.mdl-title {
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+.mdl-body {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 15px;
+}

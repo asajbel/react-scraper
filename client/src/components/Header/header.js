@@ -10,17 +10,12 @@ const Header = props => (
     </button>
     <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li className={`nav-item ${ props.home && " active" }`} >
-          <a className="nav-link" href="/">Home { props.home && <span className="sr-only">(current)</span> }</a>
+        <li className={`nav-item ${window.location.pathname === "/" ? "active" : ""}`} >
+          <a className="nav-link" href="/">Home { window.location.pathname === "/" && <span className="sr-only">(current)</span> }</a>
         </li>
-        <li className={`nav-item ${ props.saved && " active" }`}>
-          <a className="nav-link" href="/saved">Saved Articles { props.saved && <span className="sr-only">(current)</span> }</a>
+        <li className={`nav-item ${window.location.pathname === "/saved" ? "active" : ""}`}>
+          <a className="nav-link" href="/saved">Saved Articles { window.location.pathname === "/saved" && <span className="sr-only">(current)</span> }</a>
         </li>
-        { props.home &&
-          <li className="nav-item">
-            <button id="scrapebtn" className="btn btn-reddit">Scrap reddit.com/r/all</button>
-          </li>
-        }
       </ul>
     </div>
   </nav>
