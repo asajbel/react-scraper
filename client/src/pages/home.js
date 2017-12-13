@@ -27,7 +27,7 @@ class Home extends Component {
 			.catch(err => console.log(err));
 	};
 
-	scrapeBooks = event => {
+	scrapeArticles = event => {
 		API.scrape()
 			.then(res => {
 				console.log("res: ", res);
@@ -36,6 +36,16 @@ class Home extends Component {
 			})
 			.catch(err => console.log(err));
 	};
+
+	saveArticle = event => {
+		const id = event.target.dataset.id;
+		console.log(id);
+		API.saveArticle(id)
+			.then(res => {
+				this.toggleModal(`Saved the article to your colection.`);
+			})
+			.catch(err => console.log(err));
+	}
 
 	render() {
 		return <div className="container-fluid clear-fix">
@@ -47,13 +57,14 @@ class Home extends Component {
 		    <div className="container">
 		      <h1 className="display-3">React Scraper</h1>
 		      <p className="lead">Reddit Edition with MongoDB</p>
-          <button id="scrapebtn" onClick={this.scrapeBooks} className="btn btn-reddit">Scrape reddit.com/r/all</button>
+          <button id="scrapebtn" onClick={this.scrapeArticles} className="btn btn-reddit">Scrape reddit.com/r/all</button>
 		    </div>
 		  </div>
 		  <div id="articles">
 		  	{this.state.articles.map((article, i) => (
           <Article
           	key = {article.titleLink + i}
+          	saveHandler = {this.saveArticle}
           	{...article}
           />
         ))}

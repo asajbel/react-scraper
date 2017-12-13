@@ -10,11 +10,11 @@ const Article = props => (
 				</div>
 				<div className="col-md-3 buttons">
 					{ !props.saved ?
-						<button className="btn btn-save" data-id={props._id}>Save Article</button>
+						<button className="btn btn-save" onClick={props.saveHandler} data-id={props._id}>Save Article</button>
 						:
 						<div>
 							<button className="btn btn-details" data-id={props._id}>Article Details</button>
-							<button className="btn btn-delete" data-id={props._id}>Delete Article</button>
+							<button className="btn btn-delete" onClick={props.deleteHandler} data-id={props._id}>Delete Article</button>
 						</div>
 					}
 				</div>
