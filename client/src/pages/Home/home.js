@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import Article from "../components/Article";
-import Modal from '../components/Modal';
-import API from "../utils/API";
-import User from "../utils/DefaultUser";
+import Article from "../../components/Article";
+import Modal from '../../components/Modal';
+import API from "../../utils/API";
+import User from "../../utils/DefaultUser";
 
-class Saved extends Component {
+class Home extends Component {
 	state = {
 		articles: [],
 		isOpen: false,
@@ -23,27 +23,34 @@ class Saved extends Component {
 	};
 
 	loadArticles = () => {
-		API.getSaved(User.name)
+		API.getArticles()
 			.then(res => this.setState({ articles: res.data }))
 			.catch(err => console.log(err));
 	};
 
-	deleteSaved = event => {
+	scrapeArticles = event => {
 		event.preventDefault();
-		const id = event.target.dataset.id;
-		API.removeArticle(id, User)
+		event.stopPropagation();
+		API.scrape()
 			.then(res => {
-				console.log(res.data);
+				console.log("res: ", res);
 				this.loadArticles();
-				this.toggleModal("Article removed from your saved list");
+				this.toggleModal(`Found ${res.data.length} new articles.`);
 			})
 			.catch(err => console.log(err));
 	};
 
-	getDetails = event => {
+	saveArticle = event => {
 		event.preventDefault();
-		
-	};
+		event.stopPropagation();
+		const id = event.target.dataset.id;
+		console.log(id);
+		API.saveArticle(id, User)
+			.then(res => {
+				this.toggleModal(`Saved the article to your colection.`);
+			})
+			.catch(err => console.log(err));
+	}
 
 	render() {
 		return <div className="container-fluid clear-fix">
@@ -55,14 +62,14 @@ class Saved extends Component {
 		    <div className="container">
 		      <h1 className="display-3">React Scraper</h1>
 		      <p className="lead">Reddit Edition with MongoDB</p>
+          <button id="scrapebtn" onClick={this.scrapeArticles} className="btn btn-reddit">Scrape reddit.com/r/all</button>
 		    </div>
 		  </div>
 		  <div id="articles">
 		  	{this.state.articles.map((article, i) => (
           <Article
           	key = {article.titleLink + i}
-          	saved = {true}
-          	deleteHandler = {this.deleteSaved}
+          	saveHandler = {this.saveArticle}
           	{...article}
           />
         ))}
@@ -72,4 +79,4 @@ class Saved extends Component {
 
 }; 
 
-export default Saved;
+export default Home;

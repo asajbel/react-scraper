@@ -9,8 +9,10 @@ module.exports = {
 			.catch(err => res.status(422).json(err));
 	},
   findById: function(req, res) {
+    console.log(req.params.id);
     db.Article
       .findById(req.params.id)
+      .populate("notes")
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -32,6 +34,14 @@ module.exports = {
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  createNote: function(req, res) {
+    db.Note
+      .create(req.body)
+      .then(dbModel => {
+        return db.Article.findOneAndUpdate({_id: req.params.id}, { $push: { notes: dbModel._id} }, { new: true })
+      })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   }
-
 }

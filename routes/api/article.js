@@ -13,6 +13,9 @@ router.route("/:id")
 	.get(articleController.findById)
 	.put(articleController.update);
 
+router.route("/note/:id")
+	.post(articleController.createNote);
+
 // Matches with /api/articles/scrape/:subreddit
 // subreddit optional being the url name of the subreddit
 router.route("/scrape/:subreddit?")

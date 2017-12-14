@@ -13,7 +13,7 @@ const Article = props => (
 						<button className="btn btn-save" onClick={props.saveHandler} data-id={props._id}>Save Article</button>
 						:
 						<div>
-							<button className="btn btn-details" data-id={props._id}>Article Details</button>
+							<a href={"/detail/" + props._id} ><button className="btn btn-details" data-id={props._id}>Article Details</button></a>
 							<button className="btn btn-delete" onClick={props.deleteHandler} data-id={props._id}>Delete Article</button>
 						</div>
 					}
@@ -23,7 +23,7 @@ const Article = props => (
 				<div className="bottom col-xs-12">
 					<a id="commentLink" className="bot-link" href={props.commentsLink} target="blank">{props.comments}</a>
 					<a id="userLink" className="bot-link" href={props.userLink} target="blank">{props.user}</a>
-					<a id="subLink" className="bot-link" href={props.subLink} target="blank">{props.subreddit}</a>
+					<a id="subLink" className="bot-link" href={props.subredditLink} target="blank">{props.subreddit}</a>
 				</div>
 			</div>
 		</article>

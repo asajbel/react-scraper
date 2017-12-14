@@ -3,7 +3,7 @@ const userController = require("../../controllers/userController");
 
 // Matches with /api/user
 router.route("/")
-	.post(userController.create);
+	.post(userController.findOrCreate);
 
 // Matches with /api/user/:name
 router.route("/:name")

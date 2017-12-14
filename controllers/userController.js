@@ -24,7 +24,7 @@ module.exports = {
   },
   findOrCreate: function(req, res) {
     db.User
-      .find(req.body, {upsert: true, new: true})
+      .findOneAndUpdate({name: req.body.name}, req.body, {upsert: true, new: true})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -32,7 +32,7 @@ module.exports = {
     db.User
       .findOne({name: req.params.name})
       .populate("articles")
-      .then(dbModel => res.json(dbModel.articles))
+      .then(dbModel => res.json(dbModel.articles.reverse()))
       .catch(err => res.status(422).json(err));
   },
   saveArticle: function(req, res) {
@@ -43,9 +43,9 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   removeArticle: function(req, res) {
-    console.log("removeArticle", req.body);
+    console.log("removeArticle", req.query);
     db.User
-      .findOneAndUpdate({name: req.body.name}, { $pull: { articles: req.params.id} }, { new: true })
+      .findOneAndUpdate({name: req.query.name}, { $pull: { articles: req.params.id} }, { new: true })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
