@@ -7,6 +7,7 @@
 .btn-reddit:hover {
   background-color: #dd3a08;
   border-color: #d43708;
+  z-index: 0;
 }
 
 .input-reddit {
@@ -14,4 +15,5 @@
 	margin: 2px 0;
 	max-height: 38px;
 	max-width: 180px;
+	z-index: 5!important;
 }

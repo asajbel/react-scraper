@@ -35,18 +35,6 @@
   box-shadow: none;
 }
 
-.btn-save {
-  background-color: #40ce60;
-}
-
-.btn-details {
-  background-color: #d02ad0;
-}
-
-.btn-delete {
-  background-color: #f12424;
-}
-
 .buttons {
   display: block;
   padding: 15px;
