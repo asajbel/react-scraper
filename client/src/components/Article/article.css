@@ -60,10 +60,22 @@
 	background-color: #40ce60;
 }
 
+.btn-save:hover {
+	background-color: #35b853;
+}
+
 .btn-details {
 	background-color: #d02ad0;
 }
 
+.btn-details:hover {
+	background-color: #b422b4;
+}
+
 .btn-delete {
 	background-color: #f12424;
+}
+
+.btn-delete:hover {
+	background-color: #d11f1f;
 }

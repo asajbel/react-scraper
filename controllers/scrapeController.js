@@ -5,9 +5,11 @@ const request = require("request");
 module.exports = {
 	scrape: function(req, res) {
 		let subreddit = req.params.subreddit;
+		console.log("Subreddit is", subreddit);
 		if(!req.params.subreddit) {
 			subreddit = "all"
 		}
+		console.log("Subreddit is", subreddit);
 	  // Make a request for the news section of ycombinator
 	  request("https://www.reddit.com/r/"+subreddit, function(error, response, html) {
 	    // Load the html body from request into cheerio

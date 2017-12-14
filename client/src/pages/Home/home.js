@@ -3,12 +3,14 @@ import Article from "../../components/Article";
 import Modal from '../../components/Modal';
 import API from "../../utils/API";
 import User from "../../utils/DefaultUser";
+import "./home.css";
 
 class Home extends Component {
 	state = {
 		articles: [],
 		isOpen: false,
-		modalText: ""
+		modalText: "",
+		subredditName: "all"
 	};
 
 	toggleModal = (message) => {
@@ -31,11 +33,12 @@ class Home extends Component {
 	scrapeArticles = event => {
 		event.preventDefault();
 		event.stopPropagation();
-		API.scrape()
+		API.scrape(this.state.subredditName)
 			.then(res => {
 				console.log("res: ", res);
 				this.loadArticles();
 				this.toggleModal(`Found ${res.data.length} new articles.`);
+				this.setState({subredditName: "all"})
 			})
 			.catch(err => console.log(err));
 	};
@@ -50,7 +53,14 @@ class Home extends Component {
 				this.toggleModal(`Saved the article to your colection.`);
 			})
 			.catch(err => console.log(err));
-	}
+	};
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
 
 	render() {
 		return <div className="container-fluid clear-fix">
@@ -62,7 +72,12 @@ class Home extends Component {
 		    <div className="container">
 		      <h1 className="display-3">React Scraper</h1>
 		      <p className="lead">Reddit Edition with MongoDB</p>
-          <button id="scrapebtn" onClick={this.scrapeArticles} className="btn btn-reddit">Scrape reddit.com/r/all</button>
+          <div className="input-group">
+			      <span className="input-group-btn">
+			        <button id="scrapebtn" onClick={this.scrapeArticles} className="btn btn-reddit" type="button">Scrape reddit.com/r/</button>
+			      </span>
+			      <input type="text" className="form-control input-reddit" placeholder="all" name="subredditName" value={this.subredditName} onChange={this.handleInputChange} />
+			    </div>
 		    </div>
 		  </div>
 		  <div id="articles">
