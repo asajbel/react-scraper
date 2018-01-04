@@ -1,0 +1,36 @@
+.notes {
+	background-color: #ffffff;
+	padding: 15px;
+	border: 15px solid #ffffff;
+	border-radius: 15px;
+}
+
+.lbl {
+	font-weight: bold;
+	color: #00000078;
+	font-size: 20px;
+}
+
+.note {
+	background-color: #f8f9fa;
+	padding: 15px;
+	border: 1px solid #00000015;
+
+}
+
+.btn-comment {
+	color: #fff;
+	background-color: #007bff;;
+	border-color: #007bff;
+
+}
+
+.jumbolink {
+	text-decoration: none;
+	color: #f8f9fa;
+}
+
+.jumbolink:hover {
+	text-decoration: none;
+	color: #bac2ca;
+}

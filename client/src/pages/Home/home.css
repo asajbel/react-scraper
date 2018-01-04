@@ -1,0 +1,19 @@
+.btn-reddit {
+  background-color: #f64d18;
+  border-color: #f64d18;
+  padding-right: 0;
+}
+
+.btn-reddit:hover {
+  background-color: #dd3a08;
+  border-color: #d43708;
+  z-index: 0;
+}
+
+.input-reddit {
+	padding: 4px 12px 4px 0;
+	margin: 2px 0;
+	max-height: 38px;
+	max-width: 180px;
+	z-index: 5!important;
+}
